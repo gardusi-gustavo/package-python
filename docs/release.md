@@ -1,6 +1,6 @@
 # Release
 
-Manual release workflow. Requires `PYPI_API_TOKEN` with project upload scope.
+Manual release workflow. PyPI distribution `python-etl-contracts`. Requires `PYPI_API_TOKEN` with project upload scope.
 
 1. Build sdist and wheel.
 2. Run `twine check`.

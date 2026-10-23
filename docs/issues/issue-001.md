@@ -58,7 +58,7 @@ None.
 
 ## Decisions
 
-None yet.
+- 2026-10-23: Use the PyPI distribution name `python-etl-contracts`. The names `python-etl` and `python_etl` are already registered on PyPI; `python-etl-contracts` is available. The import package remains `python_etl`.
 
 ## Validation
 

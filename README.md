@@ -5,6 +5,7 @@ Reusable web ETL library: extract, transform, load.
 ## Repository facts
 
 - **Purpose:** Shared Python extraction, transformation, and loading helpers.
+- **PyPI distribution:** `python-etl-contracts`
 - **Workflows:** `ci`, `release`
 - **Release mode:** `pypi`
 - **Integrations:** PyPI
