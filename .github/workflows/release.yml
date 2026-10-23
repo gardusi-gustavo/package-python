@@ -9,10 +9,13 @@ permissions:
   contents: write
 jobs:
   release:
+    environment: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Install packaging tools
+        run: python3 -m pip install --upgrade build twine
       - name: Run release script
         run: bash scripts/release.sh "${{ inputs.version }}"
