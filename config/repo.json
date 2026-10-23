@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "template": { "version": 1 },
+  "name": "python-etl",
+  "kind": "library",
+  "workload": "throughput",
+  "visibility": "public",
+  "platforms": ["github", "gitlab", "bitbucket"],
+  "purpose": "Shared Python extraction, transformation, and loading helpers.",
+  "workflows": ["ci", "release"],
+  "integrations": { "dockerhub": false, "pypi": true, "npm": false },
+  "secrets": ["PYPI_API_TOKEN"],
+  "features": { "ci": true, "pages": false, "data": false, "release": true, "observability": false },
+  "limits": { "repo_mb": 100, "file_mb": 25, "data_file_mb": 50, "max_symlinks": 0 },
+  "ci": { "dockerfile": "docker/ci.Dockerfile", "script": "scripts/ci.sh", "timeout_minutes": 15, "required_jobs": ["ci"] },
+  "release": { "mode": "pypi", "script": "scripts/release.sh", "package": "python-etl", "tag_prefix": "v" },
+  "pages": { "enabled": false, "output": "public", "generator": "docs", "publish": { "github": false, "gitlab": false, "bitbucket": false, "gitea": false } },
+  "binaries": { "allowed": [], "allow_private_data": false },
+  "versioning": { "scheme": "semver", "tag_prefix": "v", "release_artifacts": true },
+  "readme": { "max_lines": 80 },
+  "rules": {}
+}

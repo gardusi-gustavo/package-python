@@ -1,0 +1,5 @@
+ci:
+  image: python:3.13-bookworm
+  script:
+    - pip install pytest build twine
+    - bash scripts/ci.sh
