@@ -3,3 +3,11 @@ ci:
   script:
     - pip install pytest build twine
     - bash scripts/ci.sh
+
+release:
+  stage: release
+  when: manual
+  environment:
+    name: release
+  script:
+    - bash scripts/release.sh "${VERSION:?set VERSION}"
