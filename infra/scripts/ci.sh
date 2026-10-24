@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd "$(dirname "${BASH_SOURCE[0]}")/../.."
+ROOT="${CI_PROJECT_DIR:-$(git rev-parse --show-toplevel)}"
+cd "$ROOT"
 PYTHONPATH=src python3 -m compileall -q src src/tests
 PYTHONPATH=src python3 -m pytest -q src/tests
