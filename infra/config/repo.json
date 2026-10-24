@@ -8,9 +8,7 @@
   "workload": "throughput",
   "visibility": "public",
   "platforms": [
-    "github",
-    "gitlab",
-    "bitbucket"
+    "gitea"
   ],
   "purpose": "Shared Python extraction, transformation, and loading helpers.",
   "workflows": [
@@ -39,16 +37,17 @@
     "max_symlinks": 0
   },
   "ci": {
-    "dockerfile": "docker/ci.Dockerfile",
-    "script": "scripts/ci.sh",
+    "dockerfile": "infra/docker/ci.Dockerfile",
+    "script": "infra/scripts/ci.sh",
     "timeout_minutes": 15,
     "required_jobs": [
       "ci"
-    ]
+    ],
+    "primary": "gitea"
   },
   "release": {
     "mode": "pypi",
-    "script": "scripts/release.sh",
+    "script": "infra/scripts/release.sh",
     "tag_prefix": "v"
   },
   "pages": {
@@ -56,9 +55,6 @@
     "output": "public",
     "generator": "docs",
     "publish": {
-      "github": false,
-      "gitlab": false,
-      "bitbucket": false,
       "gitea": false
     }
   },
@@ -74,5 +70,61 @@
   "readme": {
     "max_lines": 80
   },
-  "rules": {}
+  "rules": {
+    "src/": {
+      "allow": [
+        "*"
+      ],
+      "recursive": true
+    },
+    "infra/config/": {
+      "allow_extensions": [
+        ".json"
+      ],
+      "recursive": false
+    },
+    "infra/docker/": {
+      "allow_globs": [
+        "*.Dockerfile"
+      ],
+      "recursive": false
+    },
+    "infra/scripts/": {
+      "allow_extensions": [
+        ".sh"
+      ],
+      "recursive": true
+    },
+    "infra/data/": {
+      "allow": [
+        "*"
+      ],
+      "allow_names": [
+        ".gitkeep"
+      ],
+      "deny_extensions": [
+        ".sh",
+        ".py",
+        ".go",
+        ".js",
+        ".ts",
+        ".tsx",
+        ".rs"
+      ],
+      "recursive": true
+    },
+    "docs/": {
+      "allow_extensions": [
+        ".md"
+      ],
+      "recursive": true
+    },
+    ".gitea/workflows/": {
+      "allow_extensions": [
+        ".yml",
+        ".yaml"
+      ],
+      "recursive": false
+    }
+  }
 }

@@ -70,5 +70,5 @@ None.
 ## References
 
 - `pyproject.toml`
-- `scripts/release.sh`
+- `infra/scripts/release.sh`
 - `.gitea/workflows/release.yml`

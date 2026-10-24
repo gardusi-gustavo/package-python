@@ -4,3 +4,4 @@
 .gitlab
 public
 .venv
+infra/data

@@ -12,4 +12,4 @@ jobs:
         with:
           python-version: "3.13"
       - run: pip install pytest build twine
-      - run: bash scripts/ci.sh
+      - run: bash infra/scripts/ci.sh

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd "$(dirname "${BASH_SOURCE[0]}")/.."
+cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 version="${1:-${VERSION:-}}"
 [[ -n "$version" ]] || { echo "usage: release.sh <version>" >&2; exit 2; }
 python3 -m build
