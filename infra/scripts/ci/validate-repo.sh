@@ -23,7 +23,7 @@ pages="$(jq -r '.features.pages // false' "$CONFIG")"
 [[ "$visibility" == "public" || "$visibility" == "private" ]] || fail "visibility must be public or private"
 [[ "$(jq -r '.schema' "$CONFIG")" == "1" ]] || fail "unsupported schema"
 
-for f in README.md .gitattributes .gitignore .dockerignore "$CONFIG" infra/docker/ci.Dockerfile infra/scripts/ci.sh docs/README.md docs/wishlist/README.md docs/problems/README.md .gitea/workflows/ci.yml; do
+for f in README.md .gitattributes .gitignore .dockerignore "$CONFIG" infra/docker/ci.Dockerfile infra/scripts/ci.sh docs/README.md docs/wishlist/README.md docs/problems/README.md; do
   [[ -s "$f" ]] || fail "missing required file: $f"
 done
 [[ -d infra/data ]] || fail "missing required directory: infra/data/"
@@ -89,4 +89,7 @@ lines="$(wc -l < README.md)"
 (( lines <= readme_max )) || fail "README.md is ${lines} lines; max ${readme_max}"
 
 (( errors == 0 )) || exit 1
+if [[ -x infra/scripts/check-layout.sh ]]; then
+  infra/scripts/check-layout.sh --root .
+fi
 echo "repo contract ok: $visibility"
