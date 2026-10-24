@@ -6,5 +6,5 @@ Repository infrastructure.
 | --- | --- |
 | `infra/config/` | machine-readable repository contract |
 | `infra/docker/` | CI and runtime images |
-| `infra/data/` | application data |
+| `src/data/` | application data |
 | `infra/scripts/` | CI, release, and runtime scripts |

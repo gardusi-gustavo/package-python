@@ -23,17 +23,13 @@ pages="$(jq -r '.features.pages // false' "$CONFIG")"
 [[ "$visibility" == "public" || "$visibility" == "private" ]] || fail "visibility must be public or private"
 [[ "$(jq -r '.schema' "$CONFIG")" == "1" ]] || fail "unsupported schema"
 
-for f in README.md .gitattributes .gitignore .dockerignore "$CONFIG" infra/docker/ci.Dockerfile infra/scripts/ci.sh docs/README.md; do
+for f in README.md .gitattributes .gitignore .dockerignore "$CONFIG" infra/docker/ci.dockerfile infra/scripts/ci.sh infra/scripts/ci/validate-files.sh docs/README.md; do
   [[ -s "$f" ]] || fail "missing required file: $f"
 done
-[[ -d infra/data ]] || fail "missing required directory: infra/data/"
 [[ -d docs/issues ]] || fail "missing required directory: docs/issues/"
-for d in docs/wishlist docs/problems docs/questions; do
-  [[ -e "$d" ]] && fail "forbidden record directory: $d/ (use docs/issues/ only)"
-done
 
 if [[ "$pages" == "true" ]]; then
-  for f in infra/docker/pages.Dockerfile infra/scripts/pages.sh; do
+  for f in infra/docker/pages.dockerfile infra/scripts/pages.sh; do
     [[ -s "$f" ]] || fail "pages enabled but missing: $f"
   done
 fi
@@ -43,8 +39,8 @@ while IFS= read -r f; do
 done < <(git ls-files '*.sh')
 
 while IFS= read -r f; do
-  case "$f" in infra/docker/*Dockerfile) ;; *) fail "Dockerfile outside infra/docker/: $f" ;; esac
-done < <(git ls-files | grep -E '(^|/)Dockerfile$|\.Dockerfile$' || true)
+  case "$f" in infra/docker/*.dockerfile) ;; *) fail "Dockerfile outside infra/docker/: $f" ;; esac
+done < <(git ls-files | grep -E '(^|/)Dockerfile$|\.dockerfile$|\.dockerfile$' || true)
 
 while IFS= read -r f; do
   case "$f" in
@@ -53,30 +49,14 @@ while IFS= read -r f; do
 done < <(git ls-files | grep -E '(^|/)(\.vscode|\.idea|\.devcontainer)/|(^|/)\.editorconfig$' || true)
 
 while IFS= read -r f; do
-  case "$f" in
-    *.sh) fail "script under infra/config/: $f" ;;
-    *) ;;
-  esac
-done < <(git ls-files 'infra/config/**' || true)
-while IFS= read -r f; do
   case "$f" in *.json) ;; *) fail "infra/config/ must contain only JSON: $f" ;; esac
 done < <(git ls-files 'infra/config/**' || true)
 
 while IFS= read -r f; do
-  case "$f" in *.md|docs/issues/.gitkeep) ;; *) fail "docs/ must contain only Markdown: $f" ;; esac
+  case "$f" in *.md|docs/*/.gitkeep) ;; *) fail "docs/ must contain only Markdown: $f" ;; esac
 done < <(git ls-files 'docs/**' || true)
 
-while IFS= read -r f; do
-  case "$f" in
-    infra/scripts/*.sh|infra/config/*.json|infra/docker/*Dockerfile|docs/*.md|infra/data/*|.gitea/workflows/*.yml) ;;
-    *) ;;
-  esac
-done < <(git ls-files)
-
-# tracked empty data directory must have .gitkeep
-if [[ -z "$(git ls-files 'infra/data/**')" ]]; then
-  [[ -e infra/data/.gitkeep ]] || fail "empty infra/data/ must contain .gitkeep"
-fi
+infra/scripts/ci/validate-files.sh --root . --config "$CONFIG"
 
 max_repo="$(jq -r '.limits.repo_mb // 100' "$CONFIG")"
 max_file="$(jq -r '.limits.file_mb // 25' "$CONFIG")"

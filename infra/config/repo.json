@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "template": {
-    "version": 2
+    "version": 3
   },
   "name": "python-etl",
   "kind": "library",
@@ -10,45 +10,25 @@
   "platforms": [
     "gitea"
   ],
-  "purpose": "Shared Python extraction, transformation, and loading helpers.",
-  "workflows": [
-    "ci",
-    "release"
-  ],
-  "integrations": {
-    "dockerhub": false,
-    "pypi": true,
-    "npm": false
-  },
-  "secrets": [
-    "PYPI_API_TOKEN"
-  ],
   "features": {
     "ci": true,
     "pages": false,
-    "data": false,
     "release": true,
     "observability": false
   },
   "limits": {
     "repo_mb": 100,
     "file_mb": 25,
-    "data_file_mb": 50,
     "max_symlinks": 0
   },
   "ci": {
-    "dockerfile": "infra/docker/ci.Dockerfile",
+    "dockerfile": "infra/docker/ci.dockerfile",
     "script": "infra/scripts/ci.sh",
     "timeout_minutes": 15,
     "required_jobs": [
       "ci"
     ],
     "primary": "gitea"
-  },
-  "release": {
-    "mode": "pypi",
-    "script": "infra/scripts/release.sh",
-    "tag_prefix": "v"
   },
   "pages": {
     "enabled": false,
@@ -70,61 +50,91 @@
   "readme": {
     "max_lines": 80
   },
-  "rules": {
-    "src/": {
-      "allow": [
-        "*"
-      ],
-      "recursive": true
+  "files": {
+    "infra_max_file_mb": 1,
+    "rules": {
+      "": {
+        "allow_names": [
+          ".dockerignore",
+          ".gitattributes",
+          ".gitignore",
+          "AGENTS.md",
+          "README.md",
+          "pyproject.toml",
+          "template.version"
+        ],
+        "allow_globs": []
+      },
+      "docs/": {
+        "allow_extensions": [
+          ".md"
+        ],
+        "allow_names": [
+          ".gitkeep"
+        ]
+      },
+      "src/": {
+        "allow_extensions": [
+          ".py"
+        ],
+        "allow_names": [
+          ".gitkeep"
+        ]
+      },
+      "infra/config/": {
+        "allow_extensions": [
+          ".json"
+        ]
+      },
+      "infra/scripts/": {
+        "allow_extensions": [
+          ".sh"
+        ]
+      },
+      "infra/docker/": {
+        "allow_globs": [
+          "*.dockerfile"
+        ]
+      },
+      ".gitea/workflows/": {
+        "allow_extensions": [
+          ".yml",
+          ".yaml"
+        ]
+      },
+      ".gitea/scoped_workflows/": {
+        "allow_extensions": [
+          ".yml",
+          ".yaml"
+        ]
+      }
     },
-    "infra/config/": {
-      "allow_extensions": [
-        ".json"
-      ],
-      "recursive": false
-    },
-    "infra/docker/": {
-      "allow_globs": [
-        "*.Dockerfile"
-      ],
-      "recursive": false
-    },
-    "infra/scripts/": {
-      "allow_extensions": [
-        ".sh"
-      ],
-      "recursive": true
-    },
-    "infra/data/": {
-      "allow": [
-        "*"
-      ],
-      "allow_names": [
-        ".gitkeep"
-      ],
-      "deny_extensions": [
-        ".sh",
-        ".py",
-        ".go",
-        ".js",
-        ".ts",
-        ".tsx",
-        ".rs"
-      ],
-      "recursive": true
-    },
-    "docs/": {
-      "allow_extensions": [
-        ".md"
-      ],
-      "recursive": true
-    },
-    ".gitea/workflows/": {
-      "allow_extensions": [
-        ".yml",
-        ".yaml"
-      ],
-      "recursive": false
-    }
+    "forbid": [
+      {
+        "regex": "(^|/)[^/]*\\.md$",
+        "reason": "Markdown is allowed only in docs/, README.md, and AGENTS.md",
+        "allow": [
+          "^README\\.md$",
+          "^AGENTS\\.md$",
+          "^docs/"
+        ]
+      },
+      {
+        "regex": "^infra/data/",
+        "reason": "infra/data is retired; use src/data"
+      },
+      {
+        "regex": "^infra/.*\\.(pdf|png|jpg|jpeg|gif|webp|mp4|mp3|zip|gz|tar|7z)$",
+        "reason": "infra is repository management only"
+      },
+      {
+        "regex": "^\\.github/",
+        "reason": "GitHub is not a source"
+      },
+      {
+        "regex": "^\\.gitlab-ci\\.yml$",
+        "reason": "GitLab is not a source"
+      }
+    ]
   }
 }

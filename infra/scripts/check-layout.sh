@@ -31,15 +31,16 @@ for dir in src infra docs; do
   [[ -d "$dir" ]] || fail "missing required directory: $dir/"
 done
 
-for f in README.md infra/config/repo.json infra/docker/ci.Dockerfile infra/scripts/ci.sh; do
+for f in README.md infra/config/repo.json infra/docker/ci.dockerfile infra/scripts/ci.sh; do
   [[ -s "$f" ]] || fail "missing required file: $f"
 done
 
 for old in config docker data scripts .github .gitlab-ci.yml; do
   [[ -e "$old" ]] && fail "old root path still present: $old"
 done
+[[ -e infra/data ]] && fail "infra/data is retired; use src/data"
+[[ -e infra/README.md ]] && fail "Move infra/README.md to docs/"
 
-[[ -e src/.gitkeep ]] && fail "remove src/.gitkeep; src/ is no longer empty"
 
 allowed="src infra docs pkg test .gitea"
 while IFS= read -r top; do
