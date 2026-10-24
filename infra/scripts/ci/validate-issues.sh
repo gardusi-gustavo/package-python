@@ -133,10 +133,10 @@ for f in docs/issues/*; do
   [[ -f "$f" ]] || continue
   base="$(basename "$f")"
   case "$base" in
-    issue-*.md|question-*.md) ;;
     template.md|question-template.md)
       [[ "$repo_name" == "templates" ]] || fail "template file belongs in public/templates only: $f"
       ;;
+    issue-*.md|question-*.md) ;;
     *) fail "unexpected file in docs/issues/: $f" ;;
   esac
 done
