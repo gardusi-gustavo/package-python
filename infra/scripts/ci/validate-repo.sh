@@ -23,10 +23,14 @@ pages="$(jq -r '.features.pages // false' "$CONFIG")"
 [[ "$visibility" == "public" || "$visibility" == "private" ]] || fail "visibility must be public or private"
 [[ "$(jq -r '.schema' "$CONFIG")" == "1" ]] || fail "unsupported schema"
 
-for f in README.md .gitattributes .gitignore .dockerignore "$CONFIG" infra/docker/ci.Dockerfile infra/scripts/ci.sh docs/README.md docs/wishlist/README.md docs/problems/README.md; do
+for f in README.md .gitattributes .gitignore .dockerignore "$CONFIG" infra/docker/ci.Dockerfile infra/scripts/ci.sh docs/README.md; do
   [[ -s "$f" ]] || fail "missing required file: $f"
 done
 [[ -d infra/data ]] || fail "missing required directory: infra/data/"
+[[ -d docs/issues ]] || fail "missing required directory: docs/issues/"
+for d in docs/wishlist docs/problems docs/questions; do
+  [[ -e "$d" ]] && fail "forbidden record directory: $d/ (use docs/issues/ only)"
+done
 
 if [[ "$pages" == "true" ]]; then
   for f in infra/docker/pages.Dockerfile infra/scripts/pages.sh; do
@@ -59,7 +63,7 @@ while IFS= read -r f; do
 done < <(git ls-files 'infra/config/**' || true)
 
 while IFS= read -r f; do
-  case "$f" in *.md|docs/issues/.gitkeep|docs/questions/.gitkeep) ;; *) fail "docs/ must contain only Markdown: $f" ;; esac
+  case "$f" in *.md|docs/issues/.gitkeep) ;; *) fail "docs/ must contain only Markdown: $f" ;; esac
 done < <(git ls-files 'docs/**' || true)
 
 while IFS= read -r f; do
@@ -91,5 +95,8 @@ lines="$(wc -l < README.md)"
 (( errors == 0 )) || exit 1
 if [[ -x infra/scripts/check-layout.sh ]]; then
   infra/scripts/check-layout.sh --root .
+fi
+if [[ -x infra/scripts/ci/validate-issues.sh ]]; then
+  infra/scripts/ci/validate-issues.sh --root .
 fi
 echo "repo contract ok: $visibility"
