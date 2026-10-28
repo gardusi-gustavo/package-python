@@ -1,6 +1,5 @@
 # syntax=docker/dockerfile:1
-ARG CI_REGISTRY
-FROM ${CI_REGISTRY}/public/workflows/ci-tools:1 AS ci-tools
+FROM docker.io/kapetim/ci-tools:1 AS ci-tools
 FROM python:3.13-bookworm
 
 RUN apt-get update \
