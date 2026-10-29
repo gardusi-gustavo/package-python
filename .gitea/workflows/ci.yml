@@ -2,6 +2,10 @@ name: ci
 on:
   pull_request:
     branches: [main]
+concurrency:
+  group: ci-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   ci:
     runs-on: ubuntu-latest
