@@ -5,6 +5,5 @@ in the consuming app.
 
 ## 📚 Issues
 
-Issue and question records live in [`docs/issues/`](issues/).
+Active work lives in [Gitea issues](http://gitea.localhost:3001/tools/web-etl/issues).
 
-The canonical format lives in `public/templates/docs/issues/`.

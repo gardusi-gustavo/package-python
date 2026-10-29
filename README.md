@@ -14,5 +14,4 @@ Reusable web ETL library: extract, transform, load.
 
 ## 📚 Durable records
 
-Issue and question records live in [`docs/issues/`](docs/issues/).
-The canonical format lives in `public/templates/docs/issues/`.
+Active work lives in [Gitea issues](http://gitea.localhost:3001/tools/web-etl/issues).

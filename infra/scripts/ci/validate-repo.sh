@@ -26,7 +26,6 @@ pages="$(jq -r '.features.pages // false' "$CONFIG")"
 for f in README.md .gitattributes .gitignore .dockerignore "$CONFIG" infra/docker/ci.dockerfile infra/scripts/ci.sh infra/scripts/ci/validate-files.sh docs/README.md; do
   [[ -s "$f" ]] || fail "missing required file: $f"
 done
-[[ -d docs/issues ]] || fail "missing required directory: docs/issues/"
 
 if [[ "$pages" == "true" ]]; then
   for f in infra/docker/pages.dockerfile infra/scripts/pages.sh; do
@@ -40,7 +39,7 @@ done < <(git ls-files '*.sh')
 
 while IFS= read -r f; do
   case "$f" in infra/docker/*.dockerfile) ;; *) fail "Dockerfile outside infra/docker/: $f" ;; esac
-done < <(git ls-files | grep -E '(^|/)Dockerfile$|\.dockerfile$|\.dockerfile$' || true)
+done < <(git ls-files | grep -E '(^|/)Dockerfile$|\.Dockerfile$|\.dockerfile$' || true)
 
 while IFS= read -r f; do
   case "$f" in
@@ -53,7 +52,7 @@ while IFS= read -r f; do
 done < <(git ls-files 'infra/config/**' || true)
 
 while IFS= read -r f; do
-  case "$f" in *.md|docs/*/.gitkeep) ;; *) fail "docs/ must contain only Markdown: $f" ;; esac
+  case "$f" in *.md) ;; *) fail "docs/ must contain only Markdown: $f" ;; esac
 done < <(git ls-files 'docs/**' || true)
 
 infra/scripts/ci/validate-files.sh --root . --config "$CONFIG"
@@ -75,8 +74,5 @@ lines="$(wc -l < README.md)"
 (( errors == 0 )) || exit 1
 if [[ -x infra/scripts/check-layout.sh ]]; then
   infra/scripts/check-layout.sh --root .
-fi
-if [[ -x infra/scripts/ci/validate-issues.sh ]]; then
-  infra/scripts/ci/validate-issues.sh --root .
 fi
 echo "repo contract ok: $visibility"
