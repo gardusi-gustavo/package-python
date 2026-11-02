@@ -23,6 +23,71 @@ pages="$(jq -r '.features.pages // false' "$CONFIG")"
 [[ "$visibility" == "public" || "$visibility" == "private" ]] || fail "visibility must be public or private"
 [[ "$(jq -r '.schema' "$CONFIG")" == "1" ]] || fail "unsupported schema"
 
+identity_fields=(organization layer depends_on consumers data_classification)
+identity_present=0
+for field in "${identity_fields[@]}"; do
+  if jq -e --arg f "$field" 'has($f)' "$CONFIG" >/dev/null; then
+    identity_present=$((identity_present + 1))
+  fi
+done
+if (( identity_present > 0 )); then
+  (( identity_present == ${#identity_fields[@]} )) || fail "identity fields must be all present or all absent"
+  jq -e '.organization | type == "string" and length > 0' "$CONFIG" >/dev/null || fail "organization must be a non-empty string"
+  jq -e '.layer | type == "number" and . >= 0 and . <= 4' "$CONFIG" >/dev/null || fail "layer must be an integer from 0 to 4"
+  jq -e '.depends_on | type == "array"' "$CONFIG" >/dev/null || fail "depends_on must be an array"
+  jq -e '.consumers | type == "array"' "$CONFIG" >/dev/null || fail "consumers must be an array"
+  jq -e '.data_classification | IN("public","private","personal","secret")' "$CONFIG" >/dev/null || fail "data_classification must be public, private, personal, or secret"
+fi
+
+knowledge_mode="$(jq -r '.knowledge_mode // empty' "$CONFIG")"
+if [[ -n "$knowledge_mode" ]]; then
+  case "$knowledge_mode" in
+    observer|instrument|domain-audit|mirror) ;;
+    *) fail "knowledge_mode must be observer, instrument, domain-audit, or mirror" ;;
+  esac
+
+  case "$knowledge_mode" in
+    observer)
+      jq -e '.sources | ((type == "string" and length > 0) or (type == "array" and length > 0))' "$CONFIG" >/dev/null ||
+        fail "observer requires a non-empty sources value"
+      ;;
+    instrument)
+      jq -e '.sources | ((type == "string" and length > 0) or (type == "array" and length > 0))' "$CONFIG" >/dev/null ||
+        fail "instrument requires a non-empty sources value"
+      jq -e '.freshness | type == "string" and length > 0' "$CONFIG" >/dev/null ||
+        fail "instrument requires freshness"
+      if jq -e '.ai_loop.data_path == true' "$CONFIG" >/dev/null; then
+        fail "instrument must not put AI in the data path"
+      fi
+      ;;
+    domain-audit)
+      coverage_path="$(jq -r '.coverage // empty' "$CONFIG")"
+      [[ -n "$coverage_path" ]] || fail "domain-audit requires coverage"
+      if [[ -n "$coverage_path" ]]; then
+        case "$coverage_path" in
+          /*|*..*) fail "coverage must be a relative path without ..: $coverage_path" ;;
+        esac
+        [[ -f "$coverage_path" ]] || fail "coverage file not found: $coverage_path"
+      fi
+      jq -e '.ai_loop.cadence | type == "string" and length > 0' "$CONFIG" >/dev/null ||
+        fail "domain-audit requires ai_loop.cadence"
+      jq -e '.ai_loop.max_issues | type == "number" and . >= 1 and . <= 20' "$CONFIG" >/dev/null ||
+        fail "ai_loop.max_issues must be between 1 and 20"
+      ;;
+    mirror)
+      jq -e '.upstream | type == "string" and length > 0' "$CONFIG" >/dev/null ||
+        fail "mirror requires upstream"
+      ;;
+  esac
+
+  if jq -e '.data_classification | IN("private","personal","secret")' "$CONFIG" >/dev/null; then
+    if jq -e 'has("ai_loop")' "$CONFIG" >/dev/null; then
+      jq -e '.ai_loop.local_only == true' "$CONFIG" >/dev/null ||
+        fail "private repositories require ai_loop.local_only: true"
+    fi
+  fi
+fi
+
 for f in README.md .gitattributes .gitignore .dockerignore "$CONFIG" infra/docker/ci.dockerfile infra/scripts/ci.sh infra/scripts/ci/validate-files.sh docs/README.md; do
   [[ -s "$f" ]] || fail "missing required file: $f"
 done
