@@ -28,10 +28,12 @@ must not receive new records.
   `ops/templates/docs/repository/issues.md`.
 - `next-issue` selects the highest unblocked rank; do not use AI to pick the
   issue.
-- Limits: 50 open issues per repo, 50 comments per issue, and 20 agent comments
-  per day per repo.
-- A migration may use a `## Slices` checklist and multiple sequential PRs;
-  soft cap 10 PRs per issue.
+- Limits live in `ops/templates/docs/repository/limits.md`: 100 open issues,
+  40 issue comments, 20 agent issue comments, 20 PR comments, 8 agent PR
+  comments, 3 change-request rounds, 2 failed PRs per issue, and 10 merged
+  slices per issue.
+- A migration uses a chain of slice PRs. Non-final slices use `Part of #N`; the
+  final slice uses `Closes #N`.
 - A repo may keep one documented exception; see
   `ops/templates/docs/repository/labels.md`.
 - Body sections:
