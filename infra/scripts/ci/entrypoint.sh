@@ -4,6 +4,10 @@ set -euo pipefail
 ROOT="${CI_PROJECT_DIR:-$PWD}"
 cd "$ROOT"
 
+if [[ -x infra/scripts/ci/validate-risk.sh ]]; then
+  bash infra/scripts/ci/validate-risk.sh --root "$ROOT"
+fi
+
 [[ -f infra/docker/ci.dockerfile ]] || { echo "missing infra/docker/ci.dockerfile" >&2; exit 1; }
 
 tag="ci-$(git rev-parse --short HEAD)-$$"
