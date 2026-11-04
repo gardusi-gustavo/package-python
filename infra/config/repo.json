@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "template": {
-    "version": 12
+    "version": 13
   },
   "name": "python-etl",
   "kind": "library",
@@ -107,16 +107,23 @@
           ".yml",
           ".yaml"
         ]
+      },
+      ".gitea/": {
+        "allow_names": [
+          "pull_request_template.md"
+        ]
       }
     },
     "forbid": [
       {
         "regex": "(^|/)[^/]*\\.md$",
-        "reason": "Markdown is allowed only in docs/, README.md, and AGENTS.md",
+        "reason": "Markdown is allowed only in docs/, .gitea/, README.md, and AGENTS.md",
         "allow": [
           "^README\\.md$",
           "^AGENTS\\.md$",
-          "^docs/"
+          "^docs/",
+          "^\\.gitea/issue_template/",
+          "^\\.gitea/pull_request_template\\.md$"
         ]
       },
       {
