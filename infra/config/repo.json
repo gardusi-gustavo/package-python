@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "template": {
-    "version": 11
+    "version": 12
   },
   "name": "python-etl",
   "kind": "library",

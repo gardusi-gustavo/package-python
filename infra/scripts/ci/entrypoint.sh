@@ -22,14 +22,8 @@ if [[ "${GITHUB_EVENT_NAME:-}" == "pull_request" && -n "${GITEA_TOKEN:-}" && -r 
   fi
 fi
 
-[[ -f infra/docker/ci.dockerfile ]] || { echo "missing infra/docker/ci.dockerfile" >&2; exit 1; }
+if command -v ci-lint >/dev/null 2>&1; then
+  ci-lint
+fi
 
-tag="ci-$(git rev-parse --short HEAD)-$$"
-cid="ci-${GITHUB_RUN_ID:-${CI_PIPELINE_ID:-$$}}"
-cleanup() { docker rm -f "$cid" >/dev/null 2>&1 || true; }
-trap cleanup EXIT
-
-docker build -f infra/docker/ci.dockerfile -t "$tag" .
-docker create --name "$cid" "$tag"
-docker cp "$ROOT/." "$cid:/repo"
-docker start -a "$cid"
+bash "$ROOT/infra/scripts/ci.sh"

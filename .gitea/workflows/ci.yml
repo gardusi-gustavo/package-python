@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    runs-on: ci-universal
     timeout-minutes: 15
     env:
       GITEA_TOKEN: ${{ secrets.GITHUB_TOKEN }}
