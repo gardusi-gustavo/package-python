@@ -80,3 +80,78 @@ must not receive new records.
 ## Repository-specific rules
 
 Add repository-specific behavior, constraints, and commands here.
+
+## Package contract
+
+### Identity
+
+| Field | Value |
+| --- | --- |
+| Account | `kapetim` |
+| Registry | PyPI |
+| Repository | `packages/python-pypi` |
+| Package | `kapetim-kit` |
+| Import or consume | `from kapetim_kit import ...` |
+| Family | `kapetim-kit` |
+| Design type | Water |
+| Repository contract | `infra/config/repo.json` |
+| Version source | `VERSION` |
+
+### Scope for 0.1.0
+
+- **One capability.** Do not ship a general utility grab-bag.
+- **Language strength:** crawling, ETL, and text or data plumbing.
+- **0.1.0 ships:** async fetch, extract, normalize, and retry helpers.
+- **Explicitly out of scope:** UI, a web framework, and data-science tooling.
+- **Dependency rule:** near-zero dependencies; no framework or heavy runtime.
+
+The design type is a mnemonic, not a contract.
+
+### Install, import, and smoke test
+
+```bash
+pip install kapetim-kit
+```
+
+```text
+from kapetim_kit import ...
+```
+
+Smoke test: create a virtual environment, pip install the wheel, and import the package.
+
+The smoke test installs or imports the package cleanly and runs in under five
+seconds after dependencies are available. It uses no database, external
+service, or network mock.
+
+### Development and release
+
+- Semantic Versioning. `0.1.0` is the first public smoke-test release.
+- `VERSION` is bare semver. The Git tag is `v0.1.0`. The registry version is
+  `0.1.0`.
+- `infra/config/repo.json` declares the publish target and CI profile.
+- Releases are tag-driven.
+- No credentials in code, manifests, or workflow files.
+- Registry tokens come only from CI secrets.
+- Run the repository's native build, lint, and tests before pushing.
+
+```bash
+PYTHONPATH=src python3 -m compileall -q src src/tests && PYTHONPATH=src python3 -m pytest -q src/tests
+```
+
+### Agent rules
+
+- Do not add a web framework, ORM, UI framework, or heavy runtime.
+- Do not add a dependency without a concrete use in `0.1.0`.
+- Keep the public API small and documented.
+- Do not change the package identifier without updating the reservation issue.
+- Do not publish from a dirty tree.
+- Record the published registry URL in issue `#23`.
+
+### Links
+
+- Practice hub: `#20`
+- Automation hub: `#21`
+- Onboarding issue: `#22`
+- 0.1.0 issue: `#23`
+- Reservation issue: `dashboards/ops#168`
+- Identity decision: `dashboards/ops#192`
