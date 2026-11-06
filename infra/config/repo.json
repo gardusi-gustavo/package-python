@@ -1,9 +1,9 @@
 {
   "schema": 1,
   "template": {
-    "version": 13
+    "ref": "0.3.2"
   },
-  "name": "python-etl",
+  "name": "python-pypi",
   "kind": "library",
   "workload": "throughput",
   "visibility": "public",
@@ -28,7 +28,8 @@
     "required_jobs": [
       "ci"
     ],
-    "primary": "gitea"
+    "primary": "gitea",
+    "profile": "python"
   },
   "pages": {
     "enabled": false,
@@ -143,5 +144,17 @@
         "reason": "GitLab is not a source"
       }
     ]
+  },
+  "organization": "packages",
+  "layer": 2,
+  "depends_on": [],
+  "consumers": [],
+  "data_classification": "public",
+  "publish": [
+    "pypi"
+  ],
+  "hubs": {
+    "practice": 20,
+    "automation": 21
   }
 }

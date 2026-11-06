@@ -14,4 +14,4 @@ Reusable web ETL library: extract, transform, load.
 
 ## 📚 Durable records
 
-Active work lives in [Gitea issues](http://gitea.localhost:3001/tools/web-etl/issues).
+Active work lives in [Gitea issues](http://gitea.localhost:3001/packages/python-pypi/issues).

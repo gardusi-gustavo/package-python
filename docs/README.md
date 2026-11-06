@@ -5,5 +5,5 @@ in the consuming app.
 
 ## 📚 Issues
 
-Active work lives in [Gitea issues](http://gitea.localhost:3001/tools/web-etl/issues).
+Active work lives in [Gitea issues](http://gitea.localhost:3001/packages/python-pypi/issues).
 
