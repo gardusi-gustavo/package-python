@@ -1,0 +1,42 @@
+{
+  "id": "1.011",
+  "rank": "1.011",
+  "type": "enhancement",
+  "title": "1.011 - Validate ingested records against a schema",
+  "status": "backlog",
+  "source": "agent",
+  "author": "gardusi-gustavo-bot",
+  "created": "2026-10-29",
+  "platform": "gitea",
+  "platform_issue_id": null,
+  "platform_issue_url": null,
+  "limits": {
+    "max_commits": 5,
+    "max_file_changes": 4
+  },
+  "attempts": [],
+  "tags": [
+    "enhancement",
+    "migrated"
+  ],
+  "legacy": {
+    "issue_id": 12,
+    "url": "http://gitea.localhost:3001/packages/python-pypi/issues/12",
+    "author": "gardusi-gustavo-bot",
+    "created_at": "2026-10-29",
+    "labels": [
+      "enhancement"
+    ],
+    "comments_count": 0,
+    "original_rank": "1.0",
+    "original_title": "1.0 - Validate ingested records against a schema",
+    "body": "## Summary\n\nValidate records before load and fail closed when the shape does not match.\n\n## Context\n\nThe ETL library has stage interfaces and retry rules, but no schema validation.\nA malformed payload can reach a dashboard or a database.\n\n## Expected outcome\n\n- A schema per record family.\n- Validation between transform and load.\n- A typed error with the failing field.\n- A strict/lenient mode.\n- Fixtures for valid and invalid records.\n- A versioned schema.\n\n## Out of scope\n\n- Building a schema registry service.\n- Migrating stored data.\n- Validating every external source at once.\n\n## Acceptance criteria\n\n- [ ] Every loader target has a schema.\n- [ ] Invalid records fail before load.\n- [ ] The error names the field and record.\n- [ ] Strict mode is the default.\n- [ ] Fixtures cover valid and invalid cases.\n- [ ] A schema change is versioned.\n\n## Plan\n\n- [ ] Choose the schema format.\n- [ ] Add validation to the pipeline.\n- [ ] Add fixtures.\n- [ ] Document strict/lenient behavior.\n\n## Validation\n\n- [ ] A missing required field fails.\n- [ ] An unknown field follows the mode.\n- [ ] A valid fixture loads.\n\n## References\n\n- ETL interfaces: #10\n- Shared contracts: ops/templates#32\n- Runtime errors: ops/templates#33"
+  },
+  "spec": {
+    "summary": "## Summary",
+    "expected_outcome": "Migrated from Gitea issue #12; confirm scope before starting.",
+    "acceptance_criteria": [
+      "Review the legacy body and confirm the acceptance criteria."
+    ]
+  }
+}

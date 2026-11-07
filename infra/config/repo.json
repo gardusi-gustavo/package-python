@@ -113,6 +113,13 @@
         "allow_names": [
           "pull_request_template.md"
         ]
+      },
+      "docs/issues/": {
+        "allow_extensions": [
+          ".json",
+          ".md"
+        ],
+        "allow_names": []
       }
     },
     "forbid": [

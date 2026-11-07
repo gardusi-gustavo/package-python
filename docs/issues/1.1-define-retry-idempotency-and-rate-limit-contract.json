@@ -1,0 +1,42 @@
+{
+  "id": "1.1",
+  "rank": "1.1",
+  "type": "enhancement",
+  "title": "1.1 - Define retry, idempotency, and rate-limit contract",
+  "status": "backlog",
+  "source": "agent",
+  "author": "gardusi-gustavo-bot",
+  "created": "2026-10-29",
+  "platform": "gitea",
+  "platform_issue_id": null,
+  "platform_issue_url": null,
+  "limits": {
+    "max_commits": 5,
+    "max_file_changes": 4
+  },
+  "attempts": [],
+  "tags": [
+    "enhancement",
+    "migrated"
+  ],
+  "legacy": {
+    "issue_id": 11,
+    "url": "http://gitea.localhost:3001/packages/python-pypi/issues/11",
+    "author": "gardusi-gustavo-bot",
+    "created_at": "2026-10-29",
+    "labels": [
+      "enhancement"
+    ],
+    "comments_count": 0,
+    "original_rank": "1.1",
+    "original_title": "1.1 - Define retry, idempotency, and rate-limit contract",
+    "body": "## Summary\n\nDefine how ETL jobs retry, avoid duplicate effects, and respect source limits.\n\n## Context\n\nDashboards ingest external data with different rate limits. Retries can duplicate\nrecords or hammer a source.\n\n## Expected outcome\n\n- Retry policy and backoff.\n- Idempotency keys for loads.\n- Rate-limit handling.\n- Timeout and cancellation.\n- Observability for failures.\n\n## Acceptance criteria\n\n- [ ] Retries are bounded.\n- [ ] A duplicate load is safe.\n- [ ] Rate limits are respected.\n- [ ] Timeouts are configurable.\n- [ ] Failures are observable.\n- [ ] No unbounded retry loop exists.\n\n## References\n\n- Concurrency: ops/templates#39\n- State: ops/templates#38\n- Runtime: ops/templates#33"
+  },
+  "spec": {
+    "summary": "## Summary",
+    "expected_outcome": "Migrated from Gitea issue #11; confirm scope before starting.",
+    "acceptance_criteria": [
+      "Review the legacy body and confirm the acceptance criteria."
+    ]
+  }
+}

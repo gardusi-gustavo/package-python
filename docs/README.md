@@ -7,3 +7,5 @@ in the consuming app.
 
 Active work lives in [Gitea issues](http://gitea.localhost:3001/packages/python-pypi/issues).
 
+- [Local issues](issues/README.md)
+- Self-containment: `repository/self-contained.md`
