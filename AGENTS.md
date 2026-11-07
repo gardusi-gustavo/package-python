@@ -27,23 +27,22 @@ pull request.
 <!-- end issue-workflow -->
 
 <!-- begin local-issues -->
-## Local work records
+## Local tasks
 
-- Agent work is tracked in `docs/issues/`, not in new native issues.
-- Use `3.x` for bugs, `2.x` for documentation and chores, and `1.x` for
-  features and code refactors. Higher fraction = more important.
+- The backlog is `docs/issues/`, one JSON file per task.
+- Append tasks; do not rewrite task history.
+- Rank: `3.x` bugs, `2.x` documentation/chores, `1.x` features/refactors.
+  Higher fraction = more important.
 - Filename: `<rank>-<slug>.json`; no trailing zero; one to six fractional digits.
-- Exactly zero or one file may have `status: active`.
-- Only the active file gets a native issue. Record `platform_issue_id` and
-  `platform_issue_url` in it.
-- A PR references the active file and closes the native issue:
-  `Local-Issue: docs/issues/<file>.json` and `Closes #N`.
-- On a failed PR, append an attempt locally, post the same summary on the native
-  issue, close the PR, and keep the local file.
-- On merge, delete the local file; the native issue closes through `Closes #N`.
-- Native issues get one core label: `bug`, `documentation`, or `enhancement`.
-  Keep security and area classification in local `tags`.
-- Do not create extra native issues for agent work.
+- The file is the task. There is no author, source, platform, or status field.
+- Pick the highest-ranked task.
+- One work PR per repository.
+- Open one native issue for the work item when the pull request starts.
+- The PR references the task and the issue:
+  `Task: docs/issues/<file>.json` and `Closes #N`.
+- Merge deletes the task file and closes the issue. Git history keeps the record.
+- On a failed PR, append an attempt to the task file, close the PR, and keep the file.
+- Native issues created by the owner or external contributors remain native.
 <!-- end local-issues -->
 
 ## Shared rules
