@@ -15,7 +15,7 @@ jobs:
     runs-on: ci-universal
     timeout-minutes: 15
     env:
-      GITEA_URL: http://gitea:3000
+      GITEA_URL: http://gitea:3001
       GITEA_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4

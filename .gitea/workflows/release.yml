@@ -23,4 +23,4 @@ jobs:
       - name: Release from VERSION
         run: /tmp/sb run release -- --root .
         env:
-          GITEA_URL: http://gitea:3000
+          GITEA_URL: http://gitea:3001

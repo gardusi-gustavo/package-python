@@ -1,21 +1,11 @@
 {
-  "id": "1.05",
   "rank": "1.05",
-  "type": "enhancement",
-  "title": "1.05 - Make python-pypi self-contained",
-  "status": "backlog",
-  "source": "agent",
-  "author": "gardusi-gustavo-bot",
-  "created": "2026-11-07",
-  "platform": "gitea",
-  "platform_issue_id": null,
-  "platform_issue_url": null,
+  "title": "Make python-pypi self-contained",
+  "context": "Complete the repository self-containment checklist.",
   "limits": {
     "max_commits": 5,
     "max_file_changes": 4
   },
-  "attempts": [],
-  "tags": ["repository", "self-contained"],
   "spec": {
     "summary": "Complete the repository self-containment checklist.",
     "expected_outcome": "All durable data is inside the repository; external dependencies are documented.",
@@ -24,5 +14,6 @@
       "Open agent work is in docs/issues/",
       "External-only data is classified"
     ]
-  }
+  },
+  "attempts": []
 }

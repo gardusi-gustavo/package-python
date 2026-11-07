@@ -1,15 +1,16 @@
-# Local issues
+# Local tasks
 
-Agent work for this repository is stored here as one JSON file per item.
+**What this is:** the append-only task queue for this repository.
 
-The canonical schema and lifecycle are in
-`templates/md/docs/issues/README.md` and
-`templates/md/docs/issues/schema.json`.
+A task is one JSON file. The file is the task. No creator, platform, status, or
+sync metadata.
 
-Rules:
+The canonical schema, template, and lifecycle live in
+`templates/md/docs/issues/`.
 
-- `3.x` bugs, `2.x` documentation/chores, `1.x` features/refactors.
-- one to six fractional digits, no trailing zero.
-- exactly zero or one `status: active`.
-- only the active file gets a native Gitea issue.
-- owner-created native issues are not migrated automatically.
+- Filename: `<rank>-<slug>.json`; one to six fractional digits, no trailing zero.
+- Rank: `3.x` bug, `2.x` documentation or chore, `1.x` feature or refactor.
+  Higher fraction = more important.
+- Pick the highest-ranked task; open one work PR.
+- The PR deletes the task file; merge completes the task.
+- A failed attempt appends to `attempts` and keeps the file.

@@ -1,42 +1,21 @@
 {
-  "id": "1.2",
   "rank": "1.2",
-  "type": "enhancement",
-  "title": "1.2 - Define extractor, transformer, and loader interfaces",
-  "status": "backlog",
-  "source": "agent",
-  "author": "gardusi-gustavo-bot",
-  "created": "2026-10-29",
-  "platform": "gitea",
-  "platform_issue_id": null,
-  "platform_issue_url": null,
+  "title": "Define extractor, transformer, and loader interfaces",
+  "context": "Define the three ETL stages and the data contract between them.",
   "limits": {
     "max_commits": 5,
     "max_file_changes": 4
   },
-  "attempts": [],
-  "tags": [
-    "enhancement",
-    "migrated"
-  ],
-  "legacy": {
-    "issue_id": 10,
-    "url": "http://gitea.localhost:3001/templates/py/issues/10",
-    "author": "gardusi-gustavo-bot",
-    "created_at": "2026-10-29",
-    "labels": [
-      "enhancement"
-    ],
-    "comments_count": 0,
-    "original_rank": "1.2",
-    "original_title": "1.2 - Define extractor, transformer, and loader interfaces",
-    "body": "## Summary\n\nDefine the three ETL stages and the data contract between them.\n\n## Context\n\nThe library is used by dashboards, but the stage interfaces and error model are\nnot specified.\n\n## Expected outcome\n\n- `Extractor`, `Transformer`, and `Loader` protocols.\n- Typed records between stages.\n- Error and partial-failure behavior.\n- A fixture-driven test harness.\n- A versioned public API.\n\n## Acceptance criteria\n\n- [ ] Each stage has a documented interface.\n- [ ] Records are typed.\n- [ ] Partial failure is explicit.\n- [ ] A fixture can run through all three stages.\n- [ ] Breaking changes follow semver.\n\n## References\n\n- Boundaries: ops/templates#31\n- Shared contracts: ops/templates#32\n- Publish: #8"
-  },
   "spec": {
-    "summary": "## Summary",
-    "expected_outcome": "Migrated from Gitea issue #10; confirm scope before starting.",
+    "summary": "Define extractor, transformer, and loader interfaces",
+    "expected_outcome": "Confirm the migrated scope and acceptance criteria.",
     "acceptance_criteria": [
-      "Review the legacy body and confirm the acceptance criteria."
+      "Each stage has a documented interface.",
+      "Records are typed.",
+      "Partial failure is explicit.",
+      "A fixture can run through all three stages.",
+      "Breaking changes follow semver."
     ]
-  }
+  },
+  "attempts": []
 }

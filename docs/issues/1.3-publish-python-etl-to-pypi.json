@@ -1,42 +1,32 @@
 {
-  "id": "1.3",
   "rank": "1.3",
-  "type": "enhancement",
-  "title": "1.3 - Publish python-etl to PyPI",
-  "status": "backlog",
-  "source": "agent",
-  "author": "gardusi-gustavo-bot",
-  "created": "2026-10-29",
-  "platform": "gitea",
-  "platform_issue_id": null,
-  "platform_issue_url": null,
+  "title": "Publish python-etl to PyPI",
+  "context": "<!-- docs-issue:01a16f9d-66a3-705f-837e-1f89246c295d -->",
   "limits": {
     "max_commits": 5,
     "max_file_changes": 4
   },
-  "attempts": [],
-  "tags": [
-    "enhancement",
-    "migrated"
-  ],
-  "legacy": {
-    "issue_id": 8,
-    "url": "http://gitea.localhost:3001/templates/py/issues/8",
-    "author": "gardusi-gustavo-bot",
-    "created_at": "2026-10-29",
-    "labels": [
-      "enhancement"
-    ],
-    "comments_count": 0,
-    "original_rank": "1.3",
-    "original_title": "1.3 - Publish python-etl to PyPI",
-    "body": "<!-- docs-issue:01a16f9d-66a3-705f-837e-1f89246c295d -->\n_Migrated from `tools/web-etl/docs/issues/issue-01a16f9d-66a3-705f-837e-1f89246c295d.md` at `90261d1`._\n\n<details>\n<summary>Original docs issue metadata</summary>\n\n```json\n{\n  \"schema\": 1,\n  \"id\": \"01a16f9d-66a3-705f-837e-1f89246c295d\",\n  \"title\": \"Publish python-etl to PyPI\",\n  \"type\": \"enhancement\",\n  \"status\": \"ready\",\n  \"priority\": \"high\",\n  \"areas\": [\n    \"release\"\n  ],\n  \"labels\": [\n    \"area:release\",\n    \"priority:high\",\n    \"ready\",\n    \"type:enhancement\"\n  ],\n  \"blocked_by\": [],\n  \"waiting_on\": [],\n  \"created\": \"2026-10-23\",\n  \"updated\": \"2026-10-24\",\n  \"external_refs\": {},\n  \"legacy_ref\": \"docs/issues/issue-001.md\"\n}\n```\n\n</details>\n\n# Publish python-etl to PyPI\n\n## Summary\n\nChoose an available PyPI distribution name and prepare the package for its first release.\n\n## Context\n\nThe package still uses a placeholder name and has never completed a PyPI release. PyPI and npm names must be available before publication, and release execution requires `PYPI_API_TOKEN` plus an approved `release` environment.\n\n## Expected outcome\n\nA clean virtual environment can install the published package from PyPI with the documented import path.\n\n## Out of scope\n\nNone.\n\n## Data model\n\nNone.\n\n## Acceptance criteria\n\n- [ ] The final PyPI name is recorded in `pyproject.toml` and the README.\n- [ ] The wheel and source archive build locally.\n- [ ] `twine check` passes.\n- [ ] `PYPI_API_TOKEN` and the protected `release` environment are configured.\n- [ ] The release workflow publishes successfully.\n- [ ] A clean environment installs and imports the package from PyPI.\n\n## Plan\n\n- [ ] Check the candidate name on PyPI.\n- [ ] Confirm package metadata, license, and import path.\n- [ ] Build and inspect the artifacts.\n- [ ] Configure the release secret and environment approval.\n- [ ] Publish through the release workflow.\n- [ ] Install from PyPI in a clean environment.\n\n## Decisions\n\n- 2026-10-23: Use the PyPI distribution name `python-etl-contracts`. The names `python-etl` and `python_etl` are already registered on PyPI; `python-etl-contracts` is available. The import package remains `python_etl`.\n\n## Validation\n\n- [ ] CI is green.\n- [ ] Artifacts pass `twine check`.\n- [ ] The published package installs in a clean environment.\n- [ ] The repository is tagged and backed up.\n\n## References\n\n- `pyproject.toml`\n- `infra/scripts/release.sh`\n- `.gitea/workflows/release.yml`"
-  },
   "spec": {
     "summary": "<!-- docs-issue:01a16f9d-66a3-705f-837e-1f89246c295d -->",
-    "expected_outcome": "Migrated from Gitea issue #8; confirm scope before starting.",
+    "expected_outcome": "Confirm the migrated scope and acceptance criteria.",
     "acceptance_criteria": [
-      "Review the legacy body and confirm the acceptance criteria."
+      "The final PyPI name is recorded in `pyproject.toml` and the README.",
+      "The wheel and source archive build locally.",
+      "`twine check` passes.",
+      "`PYPI_API_TOKEN` and the protected `release` environment are configured.",
+      "The release workflow publishes successfully.",
+      "A clean environment installs and imports the package from PyPI.",
+      "Check the candidate name on PyPI.",
+      "Confirm package metadata, license, and import path.",
+      "Build and inspect the artifacts.",
+      "Configure the release secret and environment approval.",
+      "Publish through the release workflow.",
+      "Install from PyPI in a clean environment.",
+      "CI is green.",
+      "Artifacts pass `twine check`.",
+      "The published package installs in a clean environment.",
+      "The repository is tagged and backed up."
     ]
-  }
+  },
+  "attempts": []
 }
