@@ -162,11 +162,11 @@
     "automation": 21
   },
   "dependencies": {
+    "templates/md": "v0.2.2",
+    "templates/json": "v0.2.1",
+    "templates/sh": "v0.4.4",
     "templates/yml": "v0.1.0",
-    "templates/json": "v0.2.0",
-    "templates/sh": "v0.4.2",
-    "templates/md": "v0.2.0",
     "templates/git": "v0.1.0",
-    "templates/docker": "v0.1.0"
+    "templates/docker": "v0.1.1"
   }
 }
