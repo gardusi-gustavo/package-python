@@ -19,7 +19,6 @@
     "max_symlinks": 0
   },
   "ci": {
-    "dockerfile": "infra/docker/ci.dockerfile",
     "script": "infra/scripts/ci.sh",
     "timeout_minutes": 15,
     "required_jobs": [
@@ -59,7 +58,8 @@
           "AGENTS.md",
           "README.md",
           "pyproject.toml",
-          "template.version"
+          ".markdownlint.json",
+          "VERSION"
         ],
         "allow_globs": []
       },
@@ -82,16 +82,6 @@
       "infra/config/": {
         "allow_extensions": [
           ".json"
-        ]
-      },
-      "infra/scripts/": {
-        "allow_extensions": [
-          ".sh"
-        ]
-      },
-      "infra/docker/": {
-        "allow_globs": [
-          "*.dockerfile"
         ]
       },
       ".gitea/workflows/": {
@@ -117,6 +107,18 @@
           ".md"
         ],
         "allow_names": []
+      },
+      "infra/templates/": {
+        "allow": [
+          "*"
+        ]
+      },
+      ".gitea/issue_template/": {
+        "allow_extensions": [
+          ".md",
+          ".yml",
+          ".yaml"
+        ]
       }
     },
     "forbid": [
@@ -128,7 +130,8 @@
           "^AGENTS\\.md$",
           "^docs/",
           "^\\.gitea/issue_template/",
-          "^\\.gitea/pull_request_template\\.md$"
+          "^\\.gitea/pull_request_template\\.md$",
+          "^infra/templates/"
         ]
       },
       {
@@ -162,11 +165,10 @@
     "automation": 21
   },
   "dependencies": {
-    "templates/md": "v0.2.2",
+    "templates/yml": "v0.2.0",
     "templates/json": "v0.2.1",
-    "templates/sh": "v0.4.4",
-    "templates/yml": "v0.1.0",
-    "templates/git": "v0.1.0",
-    "templates/docker": "v0.1.1"
+    "templates/sh": "v0.4.7",
+    "templates/md": "v0.2.2",
+    "templates/git": "v0.1.1"
   }
 }

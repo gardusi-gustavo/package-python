@@ -15,8 +15,19 @@ jobs:
     runs-on: ci-universal
     timeout-minutes: 15
     env:
+      GITEA_URL: http://gitea:3000
       GITEA_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+      - name: Bootstrap sb
+        run: |
+          tag="$(jq -r '.dependencies["templates/sh"]' infra/config/repo.json)"
+          echo "SB_TAG=$tag" >> "$GITHUB_ENV"
+          curl -fsSL "$GITEA_URL/templates/sh/raw/tag/$tag/bin/sb" -o /tmp/sb
+          chmod +x /tmp/sb
+      - name: Install template dependencies
+        run: /tmp/sb deps install --root . --force
+      - name: Fetch pinned shell toolset
+        run: /tmp/sb fetch-all
       - name: Run local CI
-        run: bash infra/scripts/ci/entrypoint.sh
+        run: /tmp/sb run ci -- --root .

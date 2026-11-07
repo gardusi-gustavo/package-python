@@ -1,0 +1,199 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Local issue",
+  "type": "object",
+  "required": [
+    "id",
+    "rank",
+    "type",
+    "title",
+    "status",
+    "source",
+    "author",
+    "created",
+    "attempts",
+    "limits",
+    "spec"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[123]\\.[0-9]{1,6}$"
+    },
+    "rank": {
+      "type": "string",
+      "pattern": "^[123]\\.[0-9]{1,6}$"
+    },
+    "type": {
+      "enum": [
+        "bug",
+        "documentation",
+        "enhancement"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "backlog",
+        "active",
+        "blocked"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1
+    },
+    "created": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "platform": {
+      "enum": [
+        "gitea",
+        "github"
+      ]
+    },
+    "platform_issue_id": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "platform_issue_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "limits": {
+      "type": "object",
+      "required": [
+        "max_commits",
+        "max_file_changes"
+      ],
+      "properties": {
+        "max_commits": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_file_changes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "status",
+          "summary"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status": {
+            "type": "string"
+          },
+          "commits": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "summary": {
+            "type": "string"
+          },
+          "next_step": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "spec": {
+      "type": "object",
+      "required": [
+        "summary",
+        "expected_outcome",
+        "acceptance_criteria"
+      ],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_outcome": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "legacy": {
+      "type": "object",
+      "properties": {
+        "issue_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "url": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "comments_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "original_rank": {
+          "type": "string"
+        },
+        "original_title": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

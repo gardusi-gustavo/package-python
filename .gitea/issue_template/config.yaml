@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Operating model
+    url: http://gitea.localhost:3001/infrastructure/templates/src/branch/main/docs/decisions/ADR-0010-agent-operating-model.md
+    about: Who authors, reviews, and merges changes.
+  - name: Problem intake
+    url: http://gitea.localhost:3001/infrastructure/templates/src/branch/main/docs/repository/problem-intake.md
+    about: Capture evidence before opening an issue.

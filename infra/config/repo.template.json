@@ -1,0 +1,175 @@
+{
+  "schema": 1,
+  "name": "example-repo",
+  "organization": "example-org",
+  "layer": 3,
+  "depends_on": [],
+  "consumers": [],
+  "data_classification": "public",
+  "kind": "application",
+  "workload": "throughput",
+  "visibility": "public",
+  "platforms": [
+    "gitea"
+  ],
+  "features": {
+    "ci": true,
+    "pages": false,
+    "release": true,
+    "observability": false
+  },
+  "limits": {
+    "repo_mb": 100,
+    "file_mb": 25,
+    "max_symlinks": 0
+  },
+  "ci": {
+    "dockerfile": "infra/docker/ci.dockerfile",
+    "script": "infra/scripts/ci.sh",
+    "timeout_minutes": 15,
+    "required_jobs": [
+      "ci"
+    ],
+    "primary": "gitea",
+    "profile": "universal"
+  },
+  "pages": {
+    "enabled": false,
+    "output": "public",
+    "generator": "docs",
+    "publish": {
+      "gitea": false
+    }
+  },
+  "binaries": {
+    "allowed": [],
+    "allow_private_data": false
+  },
+  "versioning": {
+    "scheme": "semver",
+    "tag_prefix": "v",
+    "release_artifacts": false
+  },
+  "readme": {
+    "max_lines": 80
+  },
+  "release": {
+    "mode": "tag",
+    "script": "infra/scripts/release.sh",
+    "tag_prefix": "v"
+  },
+  "workflows": [
+    "ci",
+    "release",
+    "ingest"
+  ],
+  "files": {
+    "infra_max_file_mb": 1,
+    "rules": {
+      "": {
+        "allow_names": [
+          "README.md",
+          "AGENTS.md",
+          ".gitignore",
+          ".gitattributes",
+          ".dockerignore",
+          "VERSION",
+          "CHANGELOG.md",
+          "LICENSE",
+          "SECURITY.md"
+        ],
+        "allow_globs": []
+      },
+      "docs/": {
+        "allow_extensions": [
+          ".md"
+        ],
+        "allow_names": [
+          ".gitkeep"
+        ]
+      },
+      "src/": {
+        "allow_extensions": [
+          ".json"
+        ],
+        "allow_names": [
+          ".gitkeep"
+        ]
+      },
+      "infra/config/": {
+        "allow_extensions": [
+          ".json"
+        ]
+      },
+      "infra/scripts/": {
+        "allow_extensions": [
+          ".sh"
+        ],
+        "allow_names": [
+          ".gitkeep"
+        ]
+      },
+      "infra/docker/": {
+        "allow_globs": [
+          "*.dockerfile"
+        ]
+      },
+      ".gitea/workflows/": {
+        "allow_extensions": [
+          ".yml",
+          ".yaml"
+        ]
+      },
+      ".gitea/issue_template/": {
+        "allow_extensions": [
+          ".md",
+          ".yml",
+          ".yaml"
+        ]
+      },
+      ".gitea/": {
+        "allow_names": [
+          "pull_request_template.md"
+        ]
+      },
+      ".gitea/scoped_workflows/": {
+        "allow_extensions": [
+          ".yml",
+          ".yaml"
+        ]
+      }
+    },
+    "forbid": [
+      {
+        "regex": "(^|/)[^/]*\\.md$",
+        "reason": "Markdown is allowed only in docs/, README.md, and AGENTS.md",
+        "allow": [
+          "^README\\.md$",
+          "^AGENTS\\.md$",
+          "^docs/",
+          "^\\.gitea/issue_template/",
+          "^\\.gitea/pull_request_template\\.md$",
+          "^CHANGELOG\\.md$",
+          "^SECURITY\\.md$"
+        ]
+      },
+      {
+        "regex": "^infra/data/",
+        "reason": "infra/data is retired; use src/data"
+      },
+      {
+        "regex": "^infra/.*\\.(pdf|png|jpg|jpeg|gif|webp|mp4|mp3|zip|gz|tar|7z)$",
+        "reason": "infra is repository management only"
+      },
+      {
+        "regex": "^\\.github/",
+        "reason": "GitHub is not a source"
+      },
+      {
+        "regex": "^\\.gitlab-ci\\.yml$",
+        "reason": "GitLab is not a source"
+      }
+    ]
+  },
+  "dependencies": {}
+}

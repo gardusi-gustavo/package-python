@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "domain": "example-repo",
+  "updated": "2026-11-05",
+  "rows": [
+    {"topic": "repository-layout", "status": "covered", "ref": "docs/README.md"}
+  ]
+}
