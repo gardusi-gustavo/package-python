@@ -5,11 +5,11 @@ recoverable, and copyable without Gitea.
 
 ## Source of truth
 
-- Repository: `packages/python-pypi`
+- Repository: `templates/py`
 - Visibility: public
 - Owner: `gardusi-gustavo`
 - Git platform: Gitea
-- Local checkout: `~/repos/packages/python-pypi`
+- Local checkout: `~/repos/templates/py`
 
 ## Durable data
 

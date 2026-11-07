@@ -21,7 +21,7 @@
   ],
   "legacy": {
     "issue_id": 12,
-    "url": "http://gitea.localhost:3001/packages/python-pypi/issues/12",
+    "url": "http://gitea.localhost:3001/templates/py/issues/12",
     "author": "gardusi-gustavo-bot",
     "created_at": "2026-10-29",
     "labels": [

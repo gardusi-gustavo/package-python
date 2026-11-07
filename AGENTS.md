@@ -109,7 +109,7 @@ Add repository-specific behavior, constraints, and commands here.
 | --- | --- |
 | Account | `gardusi-gustavo` |
 | Registry | PyPI |
-| Repository | `packages/python-pypi` |
+| Repository | `templates/py` |
 | Package | `gardusi-gustavo-kit` |
 | Import or consume | `from gardusi_gustavo_kit import ...` |
 | Family | `gardusi-gustavo-kit` |

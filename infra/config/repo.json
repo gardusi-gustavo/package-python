@@ -1,9 +1,6 @@
 {
   "schema": 1,
-  "template": {
-    "ref": "0.3.2"
-  },
-  "name": "python-pypi",
+  "name": "py",
   "kind": "library",
   "workload": "throughput",
   "visibility": "public",
@@ -152,7 +149,7 @@
       }
     ]
   },
-  "organization": "packages",
+  "organization": "templates",
   "layer": 2,
   "depends_on": [],
   "consumers": [],
@@ -163,5 +160,6 @@
   "hubs": {
     "practice": 20,
     "automation": 21
-  }
+  },
+  "dependencies": {}
 }

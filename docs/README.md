@@ -5,7 +5,7 @@ in the consuming app.
 
 ## 📚 Issues
 
-Active work lives in [Gitea issues](http://gitea.localhost:3001/packages/python-pypi/issues).
+Active work lives in [Gitea issues](http://gitea.localhost:3001/templates/py/issues).
 
 - [Local issues](issues/README.md)
 - Self-containment: `repository/self-contained.md`
