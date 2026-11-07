@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM docker.io/kapetim/ci:1 AS ci-tools
+FROM docker.io/gardusi-gustavo/ci:1 AS ci-tools
 FROM python:3.13-bookworm
 
 RUN apt-get update \

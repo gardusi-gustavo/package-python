@@ -41,7 +41,7 @@ What could break? How was it checked?
 
 ## Reviewer notes
 
-What should `kapetao` check first?
+What should `gardusi-gustavo` check first?
 
 ## Slices
 
@@ -85,4 +85,4 @@ Required when files are deleted.
 
 ## Review
 
-Authored by `kapetim`. `kapetao` reviews and merges in the Gitea UI.
+Authored by `gardusi-gustavo-bot`. `gardusi-gustavo` reviews and merges in the Gitea UI.

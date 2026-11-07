@@ -44,29 +44,29 @@ must not receive new records.
 - Use the operations sections when the change touches runtime, backups, secrets,
   data deletion, CI, or tags.
 - No parent/child issue hierarchy. Link related issues with `#number`.
-- Blocked work: name the blocker in a comment; `kapetao` moves the board
+- Blocked work: name the blocker in a comment; `gardusi-gustavo` moves the board
   column.
-- `kapetim` may create issues and comment. It must not edit, close, reopen,
+- `gardusi-gustavo-bot` may create issues and comment. It must not edit, close, reopen,
   relabel, assign, or delete an existing issue. Comment "ready to close" and
   hand off.
-- `kapetim` may edit or delete files only inside a branch, and must call out
+- `gardusi-gustavo-bot` may edit or delete files only inside a branch, and must call out
   deletions in the PR body. It must not force-push, delete remote branches or
   tags, approve, or merge.
-- `kapetao` owns issue lifecycle, labels after creation, review, approval,
+- `gardusi-gustavo` owns issue lifecycle, labels after creation, review, approval,
   merge, tags, repositories, tokens, and system changes.
 - Prefer the `gitea-api` helper for Gitea actions; do not bypass it with raw
   `curl`.
 - When a pull request deletes files, add a `## Deletions` section to the pull
   request body.
-- Request review from `kapetao`; never merge.
+- Request review from `gardusi-gustavo`; never merge.
 - While a PR is open, add details or comments to the existing issue or PR. Do
   not open another PR or a new branch in that repository.
 - If the PR exceeds the size budget, stop appending. File a follow-up issue for
   the remaining scope.
-- If the PR is abandoned, comment with a restart note and ask `kapetao` to close
+- If the PR is abandoned, comment with a restart note and ask `gardusi-gustavo` to close
   it.
 - Branch and PR: reference the issue (`Closes #N`); record decisions in the
-  issue; `kapetao` closes it when the PR merges.
+  issue; `gardusi-gustavo` closes it when the PR merges.
 - Issues inherit repository visibility. Never put credentials, tokens, private
   data, or unredacted logs in an issue.
 <!-- end issue-workflow -->
@@ -87,12 +87,12 @@ Add repository-specific behavior, constraints, and commands here.
 
 | Field | Value |
 | --- | --- |
-| Account | `kapetim` |
+| Account | `gardusi-gustavo` |
 | Registry | PyPI |
 | Repository | `packages/python-pypi` |
-| Package | `kapetim-kit` |
-| Import or consume | `from kapetim_kit import ...` |
-| Family | `kapetim-kit` |
+| Package | `gardusi-gustavo-kit` |
+| Import or consume | `from gardusi_gustavo_kit import ...` |
+| Family | `gardusi-gustavo-kit` |
 | Design type | Water |
 | Repository contract | `infra/config/repo.json` |
 | Version source | `VERSION` |
@@ -110,11 +110,11 @@ The design type is a mnemonic, not a contract.
 ### Install, import, and smoke test
 
 ```bash
-pip install kapetim-kit
+pip install gardusi-gustavo-kit
 ```
 
 ```text
-from kapetim_kit import ...
+from gardusi_gustavo_kit import ...
 ```
 
 Smoke test: create a virtual environment, pip install the wheel, and import the package.
