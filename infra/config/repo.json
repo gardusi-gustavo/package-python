@@ -161,5 +161,12 @@
     "practice": 20,
     "automation": 21
   },
-  "dependencies": {}
+  "dependencies": {
+    "templates/yml": "v0.1.0",
+    "templates/json": "v0.2.0",
+    "templates/sh": "v0.4.0",
+    "templates/md": "v0.2.0",
+    "templates/git": "v0.1.0",
+    "templates/docker": "v0.1.0"
+  }
 }
