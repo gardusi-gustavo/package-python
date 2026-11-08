@@ -6,7 +6,7 @@ Domain-audit repositories run a bounded audit:
   map.
 - Roles: auditor, critic, and planner.
 - Output: a report outside git and at most five issue drafts.
-- Human review; `gardusi-gustavo` files selected drafts.
+- Human review; `human` files selected drafts.
 - No auto-filing, no repository edits, and no web facts.
 - Private repositories use local models only.
 - Cadence: weekly for active repositories, monthly for stable ones.

@@ -44,7 +44,7 @@ agreement with `infra/scripts/check-version.sh`.
 ```
 
 `release.sh` reads `VERSION`, requires a clean `main`, verifies the manifests,
-creates `v$(cat VERSION)`, and pushes the tag. It must run as `gardusi-gustavo` because
+creates `v$(cat VERSION)`, and pushes the tag. It must run as `user` (Gitea `human`) because
 `v*` tags are protected.
 
 Bump `VERSION` in a reviewed pull request before running the release. The tag

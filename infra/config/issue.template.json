@@ -5,7 +5,7 @@
   "title": "Replace with the task title",
   "status": "backlog",
   "source": "agent",
-  "author": "gardusi-gustavo-bot",
+  "author": "bot-event",
   "created": "2026-11-07",
   "platform": "gitea",
   "platform_issue_id": null,

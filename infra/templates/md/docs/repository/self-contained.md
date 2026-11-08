@@ -7,7 +7,7 @@ recoverable, and copyable without Gitea.
 
 - Repository: `templates/md`
 - Visibility: public
-- Owner: `gardusi-gustavo`
+- Owner: `human`
 - Git platform: Gitea
 - Local checkout: `~/repos/templates/md`
 

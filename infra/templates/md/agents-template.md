@@ -29,7 +29,7 @@ by hand.
 <!-- begin operating-model -->
 ## Operating model
 
-- Agents operate as `gardusi-gustavo-bot`; never as `gardusi-gustavo` or root.
+- Agents operate as `bot-event`; never as `human` or root.
 - Code and documentation changes go through a branch and a pull request.
 - Do not push directly to `main`.
 - One open pull request per repository. The count includes every author and
@@ -39,17 +39,17 @@ by hand.
 - Do not open another PR or push a new branch in that repository.
 - Keep the PR within the repository size budget. If the change is larger, file
   a follow-up issue instead of appending it.
-- If the work is urgent, ask `gardusi-gustavo` to merge the open PR first.
+- If the work is urgent, ask `human` to merge the open PR first.
 - After merge: delete the branch, fetch `main`, and start fresh.
 - After close: write a restart note, delete the branch, and start fresh.
-- Do not approve, dismiss, or merge pull requests. `gardusi-gustavo` performs review,
+- Do not approve, dismiss, or merge pull requests. `human` performs review,
   approval, and merge in the Gitea UI.
 - Do not create, edit, close, or comment on issues through the API on
-  `gardusi-gustavo`'s behalf. Issue management belongs to `gardusi-gustavo`; agents may draft
+  `human`'s behalf. Issue management belongs to `human`; agents may draft
   issue text and hand it back.
 - Do not use admin tokens or bypass review.
-- If a task requires a gardusi-gustavo-only action, stop and report.
-- If the current user is not `gardusi-gustavo-bot`, stop before changing files.
+- If a task requires a human-only action, stop and report.
+- If the current user is not `bot-event`, stop before changing files.
 - Never put credentials, tokens, or private data in commands, logs, PRs, or issues.
 <!-- end operating-model -->
 
@@ -92,31 +92,31 @@ must not receive new records.
 - Use the operations sections when the change touches runtime, backups, secrets,
   data deletion, CI, or tags.
 - No parent/child issue hierarchy. Link related issues with `#number`.
-- Blocked work: name the blocker in a comment; `gardusi-gustavo` moves the board
+- Blocked work: name the blocker in a comment; `human` moves the board
   column.
-- `gardusi-gustavo-bot` may create issues and comment. It must not edit, close, reopen,
+- `bot-event` may create issues and comment. It must not edit, close, reopen,
   relabel, assign, or delete an existing issue. Comment "ready to close" and
   hand off.
-- `gardusi-gustavo-bot` may edit or delete files only inside a branch, and must call out
+- `bot-event` may edit or delete files only inside a branch, and must call out
   deletions in the PR body. It must not force-push, delete remote branches or
   tags, approve, or merge.
-- `gardusi-gustavo` owns issue lifecycle, labels after creation, review, approval,
+- `human` owns issue lifecycle, labels after creation, review, approval,
   merge, tags, repositories, tokens, and system changes.
 - Prefer the `gitea-api` helper for Gitea actions; do not bypass it with raw
   `curl`.
 - When a pull request deletes files, add a `## Deletions` section to the pull
   request body.
-- Request review from `gardusi-gustavo`; never merge.
+- Request review from `human`; never merge.
 - While a PR is open, add details or comments to the existing issue or PR. Do
   not open another PR or a new branch in that repository.
 - Merge the oldest open PR first; a newer PR must not merge while an older one
   is open.
 - If the PR exceeds the size budget, stop appending. File a follow-up issue for
   the remaining scope.
-- If the PR is abandoned, comment with a restart note and ask `gardusi-gustavo` to close
+- If the PR is abandoned, comment with a restart note and ask `human` to close
   it.
 - Branch and PR: reference the issue (`Closes #N`); record decisions in the
-  issue; `gardusi-gustavo` closes it when the PR merges.
+  issue; `human` closes it when the PR merges.
 - Issues inherit repository visibility. Never put credentials, tokens, private
   data, or unredacted logs in an issue.
 <!-- end issue-workflow -->
@@ -142,7 +142,7 @@ must not receive new records.
 - Write an ADR when a decision is durable, repeated, cross-repository,
   security-related, or expensive to reverse.
 - Global decisions live in `ops/templates/docs/decisions`; link them; do not copy.
-- Pull requests are authored by `gardusi-gustavo-bot` and reviewed and merged by `gardusi-gustavo`.
+- Pull requests are authored by `bot-event` and reviewed and merged by `human`.
 <!-- end decision-records -->
 
 <!-- begin dependency-reading -->
@@ -153,7 +153,7 @@ must not receive new records.
 - Read consumer AGENTS before changing a shared schema or public API.
 - Read transitive dependencies only when the change reaches them.
 - Read the relevant global ADR/process in `ops/templates`.
-- Stop on gardusi-gustavo-only actions.
+- Stop on human-only actions.
 <!-- end dependency-reading -->
 
 <!-- begin knowledge-mode -->
@@ -223,7 +223,7 @@ Domain-audit repositories run a bounded audit:
   map.
 - Roles: auditor, critic, and planner.
 - Output: a report outside git and at most five issue drafts.
-- Human review; `gardusi-gustavo-bot` files selected drafts.
+- Human review; `bot-event` files selected drafts.
 - No auto-filing, no repository edits, and no web facts.
 - Private repositories use local models only.
 - Cadence: weekly for active repositories, monthly for stable ones.

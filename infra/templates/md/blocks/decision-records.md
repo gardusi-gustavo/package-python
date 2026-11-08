@@ -7,4 +7,4 @@
 - Write an ADR when a decision is durable, repeated, cross-repository,
   security-related, or expensive to reverse.
 - Global decisions live in `infrastructure/templates/docs/decisions`; link them; do not copy.
-- Pull requests are authored by `gardusi-gustavo-bot` and reviewed and merged by `gardusi-gustavo`.
+- Pull requests are authored by `bot-event` and reviewed and merged by `human`.
