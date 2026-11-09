@@ -8,6 +8,6 @@ permissions:
   contents: read
 jobs:
   ci:
-    uses: gardusi-gustavo/devops/.github/workflows/ci-python.yml@main
+    uses: gardusi-gustavo/devops/.github/workflows/ci-python.yml@v0.1.0
     with:
       command: python3 -m compileall -q src

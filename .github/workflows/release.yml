@@ -7,6 +7,6 @@ permissions:
   id-token: write
 jobs:
   publish:
-    uses: gardusi-gustavo/devops/.github/workflows/release-pypi.yml@main
+    uses: gardusi-gustavo/devops/.github/workflows/release-pypi.yml@v0.1.0
     with:
       environment: pypi
