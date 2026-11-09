@@ -1,0 +1,18 @@
+{
+  "rank": "2.1",
+  "title": "Add type hints and tests",
+  "context": "The package has limited type and test coverage.",
+  "limits": {
+    "max_commits": 5,
+    "max_file_changes": 4
+  },
+  "spec": {
+    "summary": "Add hints and focused tests for public APIs.",
+    "expected_outcome": "Public APIs are typed and tested.",
+    "acceptance_criteria": [
+      "Type check is clean",
+      "Tests run in CI"
+    ]
+  },
+  "attempts": []
+}

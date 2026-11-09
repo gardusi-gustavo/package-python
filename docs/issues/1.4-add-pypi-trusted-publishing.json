@@ -1,0 +1,18 @@
+{
+  "rank": "1.4",
+  "title": "Add PyPI trusted publishing",
+  "context": "The release path still assumes a token.",
+  "limits": {
+    "max_commits": 5,
+    "max_file_changes": 4
+  },
+  "spec": {
+    "summary": "Configure OIDC Trusted Publishing.",
+    "expected_outcome": "A v* tag publishes without a stored token.",
+    "acceptance_criteria": [
+      "Workflow uses id-token",
+      "Environment is documented"
+    ]
+  },
+  "attempts": []
+}
