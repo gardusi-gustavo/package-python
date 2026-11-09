@@ -184,10 +184,6 @@
     "automation": 21
   },
   "dependencies": {
-    "templates/yml": "v0.2.0",
-    "templates/json": "v0.2.1",
-    "templates/sh": "v0.6.3",
-    "templates/md": "v0.3.1",
-    "templates/git": "v0.1.1"
+    "gardusi-gustavo/package-sh": "v0.6.3"
   }
 }

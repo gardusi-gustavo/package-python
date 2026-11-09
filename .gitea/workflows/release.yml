@@ -14,9 +14,9 @@ jobs:
           fetch-depth: 0
       - name: Bootstrap sb
         run: |
-          tag="$(jq -r '.dependencies["templates/sh"]' infra/config/repo.json)"
+          tag="$(jq -r '.dependencies["gardusi-gustavo/package-sh"]' infra/config/repo.json)"
           echo "SB_TAG=$tag" >> "$GITHUB_ENV"
-          curl -fsSL "$GITEA_URL/templates/sh/raw/tag/$tag/bin/sb" -o /tmp/sb
+          curl -fsSL "$GITEA_URL/gardusi-gustavo/package-sh/raw/tag/$tag/bin/sb" -o /tmp/sb
           chmod +x /tmp/sb
       - name: Fetch pinned shell toolset
         run: /tmp/sb fetch-all
