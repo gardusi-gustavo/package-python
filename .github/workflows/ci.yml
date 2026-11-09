@@ -1,0 +1,13 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  ci:
+    uses: gardusi-gustavo/devops/.github/workflows/ci-python.yml@main
+    with:
+      command: python3 -m compileall -q src

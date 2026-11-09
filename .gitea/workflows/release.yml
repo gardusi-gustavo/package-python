@@ -24,3 +24,4 @@ jobs:
         run: /tmp/sb run release -- --root .
         env:
           GITEA_URL: http://gitea:3001
+          SB_RAW_URL: http://gitea:3001/gardusi-gustavo/package-sh/raw/tag

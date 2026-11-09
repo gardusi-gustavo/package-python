@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "python-etl-contracts"
+name = "gardusi-gustavo-python"
 version = "0.3.0"
-description = "Reusable web ETL library"
+description = "Gardusi Gustavo Python ETL contracts"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
@@ -16,3 +16,6 @@ dev = ["build", "twine", "pytest"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/python_etl"]
+
+[project.urls]
+Homepage = "https://github.com/gardusi-gustavo/package-python"

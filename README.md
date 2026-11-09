@@ -1,11 +1,11 @@
-# python-etl
+# gardusi-gustavo-python
 
 Reusable web ETL library: extract, transform, load.
 
 ## Repository facts
 
 - **Purpose:** Shared Python extraction, transformation, and loading helpers.
-- **PyPI distribution:** `python-etl-contracts`
+- **PyPI distribution:** `gardusi-gustavo-python`
 - **Workflows:** `ci`, `release`
 - **Release mode:** `pypi`
 - **Integrations:** PyPI
@@ -14,4 +14,4 @@ Reusable web ETL library: extract, transform, load.
 
 ## 📚 Durable records
 
-Active work lives in [Gitea issues](http://gitea.localhost:3001/templates/py/issues).
+Active work lives in [Gitea issues](https://github.com/gardusi-gustavo/package-python/issues).

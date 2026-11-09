@@ -1,11 +1,12 @@
 {
   "schema": 1,
-  "name": "py",
+  "name": "package-python",
   "kind": "library",
   "workload": "throughput",
   "visibility": "public",
   "platforms": [
-    "gitea"
+    "gitea",
+    "github"
   ],
   "features": {
     "ci": true,
@@ -119,6 +120,27 @@
           ".yml",
           ".yaml"
         ]
+      },
+      ".github/": {
+        "allow_globs": [
+          "*"
+        ],
+        "allow_names": [
+          "CODEOWNERS"
+        ]
+      },
+      ".github/workflows/": {
+        "allow_extensions": [
+          ".yml",
+          ".yaml"
+        ]
+      },
+      ".github/ISSUE_TEMPLATE/": {
+        "allow_extensions": [
+          ".yml",
+          ".yaml",
+          ".md"
+        ]
       }
     },
     "forbid": [
@@ -131,7 +153,8 @@
           "^docs/",
           "^\\.gitea/issue_template/",
           "^\\.gitea/pull_request_template\\.md$",
-          "^infra/templates/"
+          "^infra/templates/",
+          "^\\.github/"
         ]
       },
       {
@@ -143,16 +166,12 @@
         "reason": "infra is repository management only"
       },
       {
-        "regex": "^\\.github/",
-        "reason": "GitHub is not a source"
-      },
-      {
         "regex": "^\\.gitlab-ci\\.yml$",
         "reason": "GitLab is not a source"
       }
     ]
   },
-  "organization": "templates",
+  "organization": "gardusi-gustavo",
   "layer": 2,
   "depends_on": [],
   "consumers": [],
@@ -167,7 +186,7 @@
   "dependencies": {
     "templates/yml": "v0.2.0",
     "templates/json": "v0.2.1",
-    "templates/sh": "v0.6.2",
+    "templates/sh": "v0.6.3",
     "templates/md": "v0.3.1",
     "templates/git": "v0.1.1"
   }

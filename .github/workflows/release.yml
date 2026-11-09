@@ -1,0 +1,12 @@
+name: release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: read
+  id-token: write
+jobs:
+  publish:
+    uses: gardusi-gustavo/devops/.github/workflows/release-pypi.yml@main
+    with:
+      environment: pypi
